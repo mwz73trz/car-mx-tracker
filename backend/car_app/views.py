@@ -7,5 +7,5 @@ class CarViewSet(ModelViewSet):
     serializer_class = CarSerializer
 
 class FuelViewSet(ModelViewSet):
-    queryset = Fuel.objects.all().order_by('-date_filled')
+    queryset = Fuel.objects.all().order_by('date_filled')
     serializer_class = FuelSerializer
