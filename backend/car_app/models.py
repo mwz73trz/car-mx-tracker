@@ -1,9 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Car(models.Model):
     make = models.CharField(max_length=35)
     car_model = models.CharField(max_length=35)
     year_made = models.IntegerField()
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='cars', blank=True, null=True)
 
     def __str__(self):
         return f'{self.make} {self.car_model}'
