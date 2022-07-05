@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import carAPI from "../../api/carAPI";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 export default function UpdateCarPage(props) {
   const [car, setCar] = useState(null);
@@ -37,24 +39,27 @@ export default function UpdateCarPage(props) {
     }
 
     return (
-      <form onSubmit={handleFormSubmit} method="PUT">
-        <label>Make: </label>
-        <input name="make" defaultValue={car.make} />
-        <br />
-        <label>Model: </label>
-        <input name="car_model" defaultValue={car.car_model} />
-        <br />
-        <label>Year: </label>
-        <input name="year_made" defaultValue={car.year_made} />
-        <br />
-        <button type="submit">Submit</button>
-      </form>
+      <Form
+        onSubmit={handleFormSubmit}
+        method="PUT"
+        style={{ width: "30%", marginLeft: "35%" }}
+      >
+        <h1>Update Car Page</h1>
+        <Form.Group className="mb-3" controlId="make">
+          <Form.Label>Car Make</Form.Label>
+          <Form.Control type="text" defaultValue={car.make} />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="car_model">
+          <Form.Label>Model</Form.Label>
+          <Form.Control type="text" defaultValue={car.car_model} />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="year_made">
+          <Form.Label>Year</Form.Label>
+          <Form.Control type="text" defaultValue={car.year_made} />
+        </Form.Group>
+        <Button type="submit">Submit</Button>
+      </Form>
     );
   };
-  return (
-    <div>
-      <h1>Update Car Page</h1>
-      {renderContact()}
-    </div>
-  );
+  return <div>{renderContact()}</div>;
 }

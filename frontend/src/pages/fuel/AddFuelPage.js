@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import carAPI from "../../api/carAPI";
 import fuelAPI from "../../api/fuelAPI";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 export default function AddFuelPage(props) {
   const [car, setCar] = useState(null);
@@ -35,26 +37,35 @@ export default function AddFuelPage(props) {
     }
   };
   return (
-    <div>
+    <Form
+      onSubmit={handleFormSubmit}
+      method="POST"
+      style={{ width: "30%", marginLeft: "35%" }}
+    >
       <h1>Add Fuel Page</h1>
-      <form onSubmit={handleFormSubmit} method="POST">
-        <label>Date Fueled: </label>
-        <input type="text" name="date_filled" placeholder="yyyy-mm-dd" />
-        <br />
-        <label>Location: </label>
-        <input type="text" name="location" placeholder="Location" />
-        <br />
-        <label>Price: </label>
-        <input type="text" name="price" placeholder="Price" />
-        <br />
-        <label>Mile Driven: </label>
-        <input type="text" name="miles_driven" placeholder="Miles Driven" />
-        <br />
-        <label>Gallons: </label>
-        <input type="text" name="gallons_pumped" placeholder="Gallons" />
-        <br />
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+      <Form.Group className="mb-3" controlId="date_filled">
+        <Form.Label>Date Fueled</Form.Label>
+        <Form.Control type="text" placeholder="yyyy-mm-dd" />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="location">
+        <Form.Label>Location</Form.Label>
+        <Form.Control type="text" placeholder="Location" />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="price">
+        <Form.Label>Price</Form.Label>
+        <Form.Control type="text" placeholder="0.00" />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="miles_driven">
+        <Form.Label>Miles Driven</Form.Label>
+        <Form.Control type="text" placeholder="Miles Driven" />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="gallons_pumped">
+        <Form.Label>Gallons Pumped</Form.Label>
+        <Form.Control type="text" placeholder="Gallons Pumped" />
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </Form>
   );
 }

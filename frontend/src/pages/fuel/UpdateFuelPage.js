@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import fuelAPI from "../../api/fuelAPI";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 export default function UpdateFuelPage(props) {
   const [fuel, setFuel] = useState(null);
@@ -39,38 +41,35 @@ export default function UpdateFuelPage(props) {
     }
 
     return (
-      <div>
-        <form onSubmit={handleFormSubmit} method="PUT">
-          <label>Date Fueled: </label>
-          <input
-            type="text"
-            name="date_filled"
-            defaultValue={fuel.date_filled}
-          />
-          <br />
-          <label>Location: </label>
-          <input type="text" name="location" defaultValue={fuel.location} />
-          <br />
-          <label>Price: </label>
-          <input type="text" name="price" defaultValue={fuel.price} />
-          <br />
-          <label>Miles Driven: </label>
-          <input
-            type="text"
-            name="miles_driven"
-            defaultValue={fuel.miles_driven}
-          />
-          <br />
-          <label>Gallons: </label>
-          <input
-            type="text"
-            name="gallons_pumped"
-            defaultValue={fuel.gallons_pumped}
-          />
-          <br />
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+      <Form
+        onSubmit={handleFormSubmit}
+        method="PUT"
+        style={{ width: "30%", marginLeft: "35%" }}
+      >
+        <Form.Group className="mb-3" controlId="date_filled">
+          <Form.Label>Date Fueled</Form.Label>
+          <Form.Control type="text" defaultValue={fuel.date_filled} />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="location">
+          <Form.Label>Location</Form.Label>
+          <Form.Control type="text" defaultValue={fuel.location} />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="price">
+          <Form.Label>Price</Form.Label>
+          <Form.Control type="text" defaultValue={fuel.price} />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="miles_driven">
+          <Form.Label>Miles Driven</Form.Label>
+          <Form.Control type="text" defaultValue={fuel.miles_driven} />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="gallons_pumped">
+          <Form.Label>Gallons Pumped</Form.Label>
+          <Form.Control type="text" defaultValue={fuel.gallons_pumped} />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
     );
   };
   return (

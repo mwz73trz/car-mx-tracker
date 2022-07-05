@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import Button from "react-bootstrap/esm/Button";
 import { useParams, Link } from "react-router-dom";
 import carAPI from "../../api/carAPI";
 import fuelAPI from "../../api/fuelAPI";
+import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/esm/Button";
 
 export default function FuelsPage(props) {
   const [car, setCar] = useState(null);
@@ -36,17 +37,25 @@ export default function FuelsPage(props) {
   const renderFuels = () => {
     return fuels.map((fuel, index) => {
       return (
-        <li key={index}>
-          {fuel.date_filled} ${fuel.total_amount} {fuel.mpg}
-          {"  "}
-          <Link to={`/fuels/${fuel.id}/update`}>
-            <Button>Update</Button>
-          </Link>
-          {"   "}
-          <Link to={`/fuels/${fuel.id}/delete`}>
-            <Button>Delete Fuel</Button>
-          </Link>
-        </li>
+        <tr key={index}>
+          <td>{fuel.date_filled}</td>
+          <td>{fuel.location}</td>
+          <td>${fuel.price}</td>
+          <td>{fuel.miles_driven}M</td>
+          <td>{fuel.gallons_pumped}G</td>
+          <td>${fuel.total_amount}</td>
+          <td>{fuel.mpg} MPG</td>
+          <td>
+            <Link to={`/fuels/${fuel.id}/update`}>
+              <Button>Update</Button>
+            </Link>
+          </td>
+          <td>
+            <Link to={`/fuels/${fuel.id}/delete`}>
+              <Button variant="danger">Delete Fuel</Button>
+            </Link>
+          </td>
+        </tr>
       );
     });
   };
@@ -54,7 +63,22 @@ export default function FuelsPage(props) {
     <div>
       <h1>Fuels Page</h1>
       <br />
-      {renderFuels()}
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>Date Fueled</th>
+            <th>Location</th>
+            <th>Price</th>
+            <th>Miles Driven</th>
+            <th>Gallons Pumped</th>
+            <th>Total Amount</th>
+            <th>MPG</th>
+            <th>#</th>
+            <th>#</th>
+          </tr>
+        </thead>
+        <tbody>{renderFuels()}</tbody>
+      </Table>
       <br />
       <Link to="add">Add Fuel</Link>
     </div>

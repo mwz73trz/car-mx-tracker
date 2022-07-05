@@ -1,5 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import fuelAPI from "../../api/fuelAPI";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
 
 export default function DeleteFuelPage(props) {
   const params = useParams();
@@ -16,16 +18,18 @@ export default function DeleteFuelPage(props) {
     }
   };
   return (
-    <div>
+    <div style={{ marginTop: "10%" }}>
       <h1>Delete Fuel Page</h1>
-      <p>Are you sure you want to delete this fuel record?</p>
+      <Alert variant="danger">
+        Are you sure you want to delete this fuel record?
+      </Alert>
       <br />
-      <button type="submit" onClick={deleteFuel}>
+      <Button variant="danger" type="submit" onClick={deleteFuel}>
         Yes
-      </button>
-      <button type="submit" onClick={cancelDelete}>
+      </Button>
+      <Button variant="secondary" type="submit" onClick={cancelDelete}>
         No
-      </button>
+      </Button>
     </div>
   );
 }

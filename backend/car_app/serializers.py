@@ -5,7 +5,7 @@ from .models import *
 class CarSerializer(serializers.ModelSerializer):
     class Meta:
         model = Car
-        fields = ['id', 'make', 'car_model', 'year_made', 'fuels', 'owner']
+        fields = ['id', 'make', 'car_model', 'year_made', 'fuels', 'oils', 'owner']
 
 class FuelSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,6 +14,13 @@ class FuelSerializer(serializers.ModelSerializer):
 
     total_amount = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
     mpg = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
+
+class OilSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Oil
+        fields = ['id', 'date_changed', 'location', 'type_oil', 'miles_driven', 'oil_due', 'car']
+
+    oil_due = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

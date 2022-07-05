@@ -6,6 +6,7 @@ from .views_auth import *
 router = DefaultRouter()
 router.register('cars', CarViewSet, basename='car')
 router.register('fuels', FuelViewSet, basename='fuel')
+router.register('oils', OilViewSet, basename='oil')
 router.register('users', UserViewSet, basename='user')
 
 urlpatterns = [

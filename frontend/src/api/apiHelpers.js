@@ -1,4 +1,15 @@
+import Cookie from "js-cookie";
+
 const apiHelpers = {};
+
+apiHelpers.getCsrfConfig = () => {
+  return {
+    withCredentials: true,
+    headers: {
+      "X-CSRFToken": Cookie.get("csrftoken"),
+    },
+  };
+};
 
 apiHelpers.tryGetFetch = async (axiosCall) => {
   try {

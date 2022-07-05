@@ -1,5 +1,10 @@
 import "./App.css";
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import CheckLoginPage from "./pages/CheckLoginPage";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
 import CreateCarPage from "./pages/car/CreateCarPage";
 import UpdateCarPage from "./pages/car/UpdateCarPage";
@@ -10,18 +15,89 @@ import UpdateFuelPage from "./pages/fuel/UpdateFuelPage";
 import DeleteFuelPage from "./pages/fuel/DeleteFuelPage";
 
 export default function App() {
+  const [username, setUsername] = useState("");
   return (
     <div className="App">
       <Router>
+        <NavBar username={username} setUsername={setUsername} />
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="cars/create" element={<CreateCarPage />} />
-          <Route path="cars/:id/update" element={<UpdateCarPage />} />
-          <Route path="cars/:id/delete" element={<DeleteCarPage />} />
-          <Route path="cars/:id/fuels" element={<FuelsPage />} />
-          <Route path="cars/:id/fuels/add" element={<AddFuelPage />} />
-          <Route path="fuels/:id/update" element={<UpdateFuelPage />} />
-          <Route path="fuels/:id/delete" element={<DeleteFuelPage />} />
+          <Route
+            path="/login"
+            element={<LoginPage setUsername={setUsername} />}
+          />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route
+            path="/"
+            element={
+              <CheckLoginPage
+                username={username}
+                actualPage={() => <HomePage username={username} />}
+              />
+            }
+          />
+          <Route
+            path="cars/create"
+            element={
+              <CheckLoginPage
+                username={username}
+                actualPage={() => <CreateCarPage username={username} />}
+              />
+            }
+          />
+          <Route
+            path="cars/:id/update"
+            element={
+              <CheckLoginPage
+                username={username}
+                actualPage={() => <UpdateCarPage username={username} />}
+              />
+            }
+          />
+          <Route
+            path="cars/:id/delete"
+            element={
+              <CheckLoginPage
+                username={username}
+                actualPage={() => <DeleteCarPage username={username} />}
+              />
+            }
+          />
+          <Route
+            path="cars/:id/fuels"
+            element={
+              <CheckLoginPage
+                username={username}
+                actualPage={() => <FuelsPage username={username} />}
+              />
+            }
+          />
+          <Route
+            path="cars/:id/fuels/add"
+            element={
+              <CheckLoginPage
+                username={username}
+                actualPage={() => <AddFuelPage username={username} />}
+              />
+            }
+          />
+          <Route
+            path="fuels/:id/update"
+            element={
+              <CheckLoginPage
+                username={username}
+                actualPage={() => <UpdateFuelPage username={username} />}
+              />
+            }
+          />
+          <Route
+            path="fuels/:id/delete"
+            element={
+              <CheckLoginPage
+                username={username}
+                actualPage={() => <DeleteFuelPage username={username} />}
+              />
+            }
+          />
         </Routes>
       </Router>
     </div>

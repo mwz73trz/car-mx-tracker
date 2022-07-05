@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import carAPI from "../../api/carAPI";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 export default function CreateCarPage(props) {
   const navigate = useNavigate();
@@ -20,20 +22,27 @@ export default function CreateCarPage(props) {
     }
   };
   return (
-    <div>
+    <Form
+      onSubmit={handleFormSubmit}
+      method="POST"
+      style={{ width: "30%", marginLeft: "35%" }}
+    >
       <h1>Create Car Page</h1>
-      <form onSubmit={handleFormSubmit} method="POST">
-        <label>Make: </label>
-        <input type="text" placeholder="Car Make" name="make" />
-        <br />
-        <label>Model: </label>
-        <input type="text" placeholder="Car Model" name="car_model" />
-        <br />
-        <label>Year: </label>
-        <input type="text" placeholder="Year" name="year_made" />
-        <br />
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+      <Form.Group className="mb-3" controlId="make">
+        <Form.Label>Car Make</Form.Label>
+        <Form.Control type="text" placeholder="Make" />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="car_model">
+        <Form.Label>Car Model</Form.Label>
+        <Form.Control type="text" placeholder="Car Model" />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="year_made">
+        <Form.Label>Year</Form.Label>
+        <Form.Control type="text" placeholder="Year" />
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </Form>
   );
 }

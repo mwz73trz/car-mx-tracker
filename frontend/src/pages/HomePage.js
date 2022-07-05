@@ -9,7 +9,7 @@ export default function HomePage(props) {
 
   useEffect(() => {
     loadCars();
-  }, []);
+  }, [props.username]);
 
   const loadCars = async () => {
     const data = await carAPI.getCars();
@@ -23,11 +23,11 @@ export default function HomePage(props) {
   };
   return (
     <div>
-      <h1>Home Page</h1>
+      <h1>Car Mx App</h1>
       {renderCars()}
       <br />
       <Link to="/cars/create">
-        <Button>Add New Car</Button>
+        <Button variant="secondary">Add New Car</Button>
       </Link>
     </div>
   );

@@ -17,8 +17,12 @@ class CarViewSet(ModelViewSet):
         return Car.objects.filter(owner=self.request.user)
     
 class FuelViewSet(ModelViewSet):
-    queryset = Fuel.objects.all().order_by('date_filled')
+    queryset = Fuel.objects.all()
     serializer_class = FuelSerializer
+
+class OilViewSet(ModelViewSet):
+    queryset = Oil.objects.all()
+    serializer_class = OilSerializer
 
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()

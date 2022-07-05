@@ -1,5 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import carAPI from "../../api/carAPI";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
 
 export default function DeleteCarPage(props) {
   const params = useParams();
@@ -18,14 +20,13 @@ export default function DeleteCarPage(props) {
   return (
     <div>
       <h1>Delete Car Page</h1>
-      <p>Are you sure you want to delete this car?</p>
-      <br />
-      <button type="submit" onClick={deleteCar}>
+      <Alert variant="danger">Are you sure you want to delete this car?</Alert>
+      <Button variant="danger" type="submit" onClick={deleteCar}>
         Yes
-      </button>
-      <button type="submit" onClick={cancelDelete}>
+      </Button>
+      <Button variant="secondary" type="submit" onClick={cancelDelete}>
         No
-      </button>
+      </Button>
     </div>
   );
 }

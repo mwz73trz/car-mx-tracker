@@ -3,3 +3,4 @@ from .models import *
 
 admin.site.register(Car)
 admin.site.register(Fuel)
+admin.site.register(Oil)
