@@ -17,7 +17,8 @@ export default function Cars(props) {
           <Button variant="danger">Delete</Button>
         </Link>
         <br />
-        <Link to={`cars/${props.car.id}/fuels`}>Fuel Data</Link>
+        <Link to={`cars/${props.car.id}/fuels`}>Fuel Data</Link> | |{" "}
+        <Link to={`cars/${props.car.id}/oils`}>Oil Data</Link>
       </ListGroup.Item>
     </ListGroup>
   );

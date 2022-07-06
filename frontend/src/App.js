@@ -13,6 +13,10 @@ import FuelsPage from "./pages/fuel/FuelsPage";
 import AddFuelPage from "./pages/fuel/AddFuelPage";
 import UpdateFuelPage from "./pages/fuel/UpdateFuelPage";
 import DeleteFuelPage from "./pages/fuel/DeleteFuelPage";
+import OilsPage from "./pages/oil/OilsPage";
+import CreateOilPage from "./pages/oil/CreateOilPage";
+import UpdateOilPage from "./pages/oil/UpdateOilPage";
+import DeleteOilPage from "./pages/oil/DeleteOilPage";
 
 export default function App() {
   const [username, setUsername] = useState("");
@@ -95,6 +99,42 @@ export default function App() {
               <CheckLoginPage
                 username={username}
                 actualPage={() => <DeleteFuelPage username={username} />}
+              />
+            }
+          />
+          <Route
+            path="cars/:id/oils"
+            element={
+              <CheckLoginPage
+                username={username}
+                actualPage={() => <OilsPage username={username} />}
+              />
+            }
+          />
+          <Route
+            path="cars/:id/oils/add"
+            element={
+              <CheckLoginPage
+                username={username}
+                actualPage={() => <CreateOilPage username={username} />}
+              />
+            }
+          />
+          <Route
+            path="oils/:id/update"
+            element={
+              <CheckLoginPage
+                username={username}
+                actualPage={() => <UpdateOilPage username={username} />}
+              />
+            }
+          />
+          <Route
+            path="oils/:id/delete"
+            element={
+              <CheckLoginPage
+                username={username}
+                actualPage={() => <DeleteOilPage username={username} />}
               />
             }
           />
